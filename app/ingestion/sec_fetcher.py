@@ -6,6 +6,7 @@ import re
 import time
 import warnings
 from pathlib import Path
+from typing import Optional
 
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 from sec_edgar_downloader import Downloader
@@ -87,11 +88,15 @@ def download_filings(
         if ticker not in CORPUS_COMPANIES:
             continue
         for filing_type in FILING_TYPES:
-            try:
-                dl.get(filing_type, ticker, limit=limit_per_type, download_details=True)
-                time.sleep(_REQUEST_DELAY_SEC)
-            except Exception as exc:
-                print(f"[sec_fetcher] {ticker} {filing_type} download failed: {exc}")
+            for attempt in range(3):
+                try:
+                    dl.get(filing_type, ticker, limit=limit_per_type, download_details=True)
+                    break
+                except Exception as exc:
+                    wait = _REQUEST_DELAY_SEC * (2 ** attempt)
+                    print(f"[sec_fetcher] {ticker} {filing_type} attempt {attempt+1} failed: {exc}")
+                    time.sleep(wait)
+            time.sleep(_REQUEST_DELAY_SEC)
 
     raw_root = download_dir / "raw" / "sec-edgar-filings"
     if not raw_root.exists():
@@ -107,20 +112,67 @@ def download_filings(
             for filing_dir in filing_type_dir.iterdir():
                 if not filing_dir.is_dir():
                     continue
-                for html_path in filing_dir.rglob("*.htm*"):
-                    try:
-                        html = html_path.read_text(encoding="utf-8", errors="ignore")
-                        text = _clean_text(html)
-                        if len(text) < 500:
-                            continue
-                        filing_date = filing_dir.name
-                        out_name = f"{ticker}_{filing_type_dir.name}_{filing_date}.txt"
-                        out_path = download_dir / out_name
-                        out_path.write_text(text, encoding="utf-8")
-                        extracted.append(out_path)
-                    except Exception as exc:
-                        print(f"[sec_fetcher] extract failed {html_path}: {exc}")
+                primary = _select_primary_document(filing_dir)
+                if not primary:
+                    print(f"[sec_fetcher] no primary doc for {ticker}/{filing_type_dir.name}/{filing_dir.name}")
+                    continue
+                try:
+                    html = primary.read_text(encoding="utf-8", errors="ignore")
+                    text = _clean_text(html)
+                    if len(text) < 500:
+                        print(f"[sec_fetcher] skipped short doc {primary.name} ({len(text)} chars)")
+                        continue
+                    filing_date = filing_dir.name
+                    out_name = f"{ticker}_{filing_type_dir.name}_{filing_date}.txt"
+                    out_path = download_dir / out_name
+                    if out_path.exists():
+                        continue
+                    out_path.write_text(text, encoding="utf-8")
+                    extracted.append(out_path)
+                    print(f"[sec_fetcher] extracted {out_name} from {primary.name} ({len(text):,} chars)")
+                except Exception as exc:
+                    print(f"[sec_fetcher] extract failed {primary}: {exc}")
     return extracted
+
+
+def _is_excluded_filing(path: Path) -> bool:
+    """Skip exhibits, XBRL, graphics, and stylesheet assets."""
+    name = path.name.lower()
+    if path.suffix.lower() == ".xml":
+        return True
+    if name.endswith(".xsd") or "xsl" in name or "exhibit" in name:
+        return True
+    if re.match(r"^r\d+\.htm", name):
+        return True
+    if re.match(r"^ex\d+", name):
+        return True
+    if "graphic" in name or name in {"summary.html", "report.css"}:
+        return True
+    return False
+
+
+def _select_primary_document(filing_dir: Path) -> Optional[Path]:
+    """
+    Pick the main 10-K/10-Q HTML document — largest text body after cleaning.
+    Avoids ingesting every exhibit/R-file separately (common SEC EDGAR pitfall).
+    """
+    candidates: list[tuple[int, Path]] = []
+    for html_path in filing_dir.rglob("*"):
+        if html_path.suffix.lower() not in {".htm", ".html"}:
+            continue
+        if _is_excluded_filing(html_path):
+            continue
+        try:
+            raw = html_path.read_text(encoding="utf-8", errors="ignore")
+            text = _clean_text(raw)
+            if len(text) >= 500:
+                candidates.append((len(text), html_path))
+        except Exception:
+            continue
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    return candidates[0][1]
 
 
 def load_corpus_text_files(corpus_dir: Path | None = None) -> list[dict]:

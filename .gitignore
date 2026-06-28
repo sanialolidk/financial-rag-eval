@@ -13,5 +13,8 @@ data/bm25/*
 !data/bm25/.gitkeep
 data/logs/*
 !data/logs/.gitkeep
+!data/logs/retrieval_benchmark.json
+data/eval/
+!data/eval/retrieval_benchmark.json
 *.db
 .DS_Store

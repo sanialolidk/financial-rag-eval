@@ -94,7 +94,7 @@ python scripts/run_eval.py --limit 10 --output data/logs/eval_summary.json
 
 | Metric | Definition |
 |--------|------------|
-| **Faithfulness** | LLM-as-judge: is every answer claim supported by retrieved chunks? (RAGAS-style) |
+| **Faithfulness** | RAGAS-style: decompose answer into claims → verify each against context (LLM judge; cross-encoder fallback without API key) |
 | **Chunk recall** | Do retrieved chunks contain expected answer keywords from the eval set? |
 | **Response relevance** | LLM-as-judge: does the answer address the question? |
 | **Hallucination** | LLM-as-judge: lists factual claims in answer not present in context |
@@ -108,19 +108,29 @@ python scripts/run_eval.py --limit 10 --output data/logs/eval_summary.json
 
 ## Benchmark results
 
-> Run `python scripts/run_eval.py` after ingestion to populate these numbers.
+Measured on the 22-query golden eval set (`app/evaluation/eval_dataset.json`) after ingesting 16 SEC filings.
 
 | Metric | Value |
 |--------|-------|
-| **Avg faithfulness** | _run eval_ |
-| **Avg chunk recall** | _run eval_ |
-| **Avg response relevance** | _run eval_ |
-| **Mean retrieval latency** | _run eval_ ms |
-| **Mean total latency** | _run eval_ ms |
+| **Avg chunk recall** | **0.93** (retrieval benchmark, hybrid + cross-encoder rerank) |
+| **Mean retrieval latency** | **438 ms** warm / **1,719 ms** incl. first-query model load |
+| **Avg faithfulness** | Run `python scripts/run_eval.py` with `OPENAI_API_KEY` (RAGAS claim-decomposition judge) |
+| **Avg response relevance** | Run full eval (requires `OPENAI_API_KEY`) |
+| **Mean total latency** | Run full eval (retrieval ~400ms + LLM ~2–4s typical) |
 | **Companies in corpus** | 8 (AAPL, TSLA, JPM, MSFT, GOOGL, AMZN, NVDA, META) |
 | **Documents ingested** | 16 (10-K + 10-Q per company) |
 | **Chunks indexed** | 3,013 |
 | **Eval queries** | 22 |
+
+```bash
+# Retrieval-only (no API key) — chunk recall + latency
+python scripts/run_retrieval_benchmark.py
+
+# Full eval — faithfulness, relevance, hallucination, total latency
+python scripts/run_eval.py --output data/logs/eval_summary.json
+```
+
+Raw retrieval benchmark: `data/logs/retrieval_benchmark.json`
 
 ## Project layout
 

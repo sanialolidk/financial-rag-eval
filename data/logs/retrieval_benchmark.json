@@ -1,0 +1,118 @@
+{
+  "num_queries": 22,
+  "avg_chunk_recall": 0.932,
+  "mean_retrieval_latency_ms": 1719.4,
+  "per_query": [
+    {
+      "query_id": "aapl_revenue",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 28635.717790999995
+    },
+    {
+      "query_id": "aapl_risk",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 475.2948329999995
+    },
+    {
+      "query_id": "tsla_automotive",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 383.118041000003
+    },
+    {
+      "query_id": "tsla_cash",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 353.12537499999763
+    },
+    {
+      "query_id": "jpm_nii",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 354.7319999999985
+    },
+    {
+      "query_id": "jpm_credit",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 358.9405430000028
+    },
+    {
+      "query_id": "msft_cloud",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 564.4385409999941
+    },
+    {
+      "query_id": "msft_rnd",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 711.0595830000009
+    },
+    {
+      "query_id": "googl_ads",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 717.6527499999992
+    },
+    {
+      "query_id": "googl_ai",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 357.10083299999695
+    },
+    {
+      "query_id": "amzn_aws",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 353.52587500000254
+    },
+    {
+      "query_id": "amzn_fulfillment",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 353.42083300000127
+    },
+    {
+      "query_id": "nvda_datacenter",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 347.97070900000193
+    },
+    {
+      "query_id": "nvda_gross_margin",
+      "chunk_recall": 0.5,
+      "retrieval_ms": 350.1855840000019
+    },
+    {
+      "query_id": "meta_reality_labs",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 549.785833999998
+    },
+    {
+      "query_id": "meta_dau",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 356.22387499999775
+    },
+    {
+      "query_id": "aapl_gross_margin",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 783.0604570000048
+    },
+    {
+      "query_id": "tsla_deliveries",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 358.9475830000026
+    },
+    {
+      "query_id": "jpm_cet1",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 351.2325839999946
+    },
+    {
+      "query_id": "msft_share_repurchase",
+      "chunk_recall": 1.0,
+      "retrieval_ms": 361.92279199999433
+    },
+    {
+      "query_id": "cross_compare",
+      "chunk_recall": 0.5,
+      "retrieval_ms": 379.99983399999593
+    },
+    {
+      "query_id": "impossible_query",
+      "chunk_recall": 0.5,
+      "retrieval_ms": 370.3041250000041
+    }
+  ],
+  "note": "Retrieval-only benchmark. Run scripts/run_eval.py with OPENAI_API_KEY for faithfulness scores."
+}

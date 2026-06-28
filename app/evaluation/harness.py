@@ -40,23 +40,24 @@ def evaluate_query(
     skip_llm_judge: bool = False,
 ) -> tuple[EvalScores, int, int]:
     """Returns scores and total judge tokens (in, out)."""
-    if skip_llm_judge or not answer:
-        chunk_recall = score_chunk_recall(eval_item, chunks, answer)
-        rel_avg = sum(rc.chunk_relevance_score for rc in chunks) / max(len(chunks), 1)
+    use_llm = bool(settings.openai_api_key) and not skip_llm_judge
+    chunk_recall = score_chunk_recall(eval_item, chunks, answer)
+    rel_avg = sum(rc.chunk_relevance_score for rc in chunks) / max(len(chunks), 1)
+
+    if not answer:
         scores = EvalScores(
-            faithfulness=0.0 if not answer else 0.5,
+            faithfulness=0.0,
             chunk_recall=chunk_recall,
-            response_relevance=0.0 if not answer else 0.5,
+            response_relevance=0.0,
             hallucination_detected=False,
             chunk_relevance_avg=rel_avg,
         )
         scores.alerts = check_alerts(scores)
         return scores, 0, 0
 
-    faith, _, fi, fo = score_faithfulness(query, answer, chunks)
-    rel, _, ri, ro = score_response_relevance(query, answer)
-    chunk_recall = score_chunk_recall(eval_item, chunks, answer)
-    hal_detected, hal_details, hi, ho = detect_hallucinations(answer, chunks)
+    faith, _, fi, fo = score_faithfulness(query, answer, chunks, use_llm=use_llm)
+    rel, _, ri, ro = score_response_relevance(query, answer, use_llm=use_llm)
+    hal_detected, hal_details, hi, ho = detect_hallucinations(answer, chunks, use_llm=use_llm)
     rel_avg = sum(rc.chunk_relevance_score for rc in chunks) / max(len(chunks), 1)
 
     scores = EvalScores(

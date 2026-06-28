@@ -18,7 +18,7 @@ from app.pipeline.query import RAGPipeline  # noqa: E402
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run eval harness on golden query set")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of eval queries")
-    parser.add_argument("--output", type=str, default=None, help="Write summary JSON to path")
+    parser.add_argument("--output", type=str, default="data/logs/eval_summary.json", help="Write summary JSON to path")
     args = parser.parse_args()
 
     pipeline = RAGPipeline()
@@ -39,10 +39,10 @@ def main() -> None:
     for k, v in summary.items():
         print(f"  {k}: {v}")
 
-    if args.output:
-        out = Path(args.output)
-        out.write_text(json.dumps(summary, indent=2), encoding="utf-8")
-        print(f"\nWrote summary to {out}")
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    print(f"\nWrote summary to {out}")
 
 
 if __name__ == "__main__":
