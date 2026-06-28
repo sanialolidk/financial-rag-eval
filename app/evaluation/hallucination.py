@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 
+from app.evaluation.numeric_grounding import find_ungrounded_numerics
 from app.evaluation.ragas_prompts import HALLUCINATION_SYSTEM
 from app.evaluation.metrics import (
     _extract_statements_heuristic,
@@ -29,6 +30,12 @@ def detect_hallucinations(
 ) -> tuple[bool, str, int, int]:
     if not answer or not chunks:
         return False, "", 0, 0
+
+    # Financial-domain guardrail: dollar amounts and fiscal years must appear in context
+    numeric_hits = find_ungrounded_numerics(answer, chunks)
+    if numeric_hits:
+        details = f"Ungrounded numerics: {numeric_hits}"
+        return True, details, 0, 0
 
     context = "\n\n".join(f"[{rc.chunk.chunk_id}]\n{rc.chunk.text[:1200]}" for rc in chunks)
 

@@ -4,6 +4,8 @@ Production-minded RAG over SEC 10-K / 10-Q filings with **hybrid retrieval**, **
 
 Built for financial document Q&A — the domain Capital One, Amex, and asset managers actually ship internally.
 
+**[Live demo →](https://financial-rag-eval.streamlit.app/)** (Streamlit Cloud — requires `OPENAI_API_KEY` in app secrets)
+
 ## Architecture
 
 ```mermaid
@@ -112,7 +114,8 @@ Measured on the 22-query golden eval set (`app/evaluation/eval_dataset.json`) af
 
 | Metric | Value |
 |--------|-------|
-| **Avg chunk recall** | **0.93** (retrieval benchmark, hybrid + cross-encoder rerank) |
+| **Avg chunk recall** | **0.93** (22-query retrieval benchmark) |
+| **Top-1 chunk relevance** | **72% → 83%** after cross-encoder reranking (+15.5%; top-1 changed on 68% of queries) |
 | **Mean retrieval latency** | **438 ms** warm / **1,719 ms** incl. first-query model load |
 | **Avg faithfulness** | Run `python scripts/run_eval.py` with `OPENAI_API_KEY` (RAGAS claim-decomposition judge) |
 | **Avg response relevance** | Run full eval (requires `OPENAI_API_KEY`) |
@@ -130,7 +133,23 @@ python scripts/run_retrieval_benchmark.py
 python scripts/run_eval.py --output data/logs/eval_summary.json
 ```
 
-Raw retrieval benchmark: `data/logs/retrieval_benchmark.json`
+Raw benchmarks: `data/eval/retrieval_benchmark.json`, `data/eval/rerank_ablation.json`
+
+### Documented failure case
+
+**NVDA Data Center revenue (prior-year hallucination):** When the model answers with *"$10.32 billion in fiscal 2023"* but retrieved chunks state *"$75.2 billion"* (fiscal 2026, NVDA 10-Q), the **numeric grounding detector** flags the wrong dollar amount and fiscal year, fires a `HALLUCINATION` alert, and the pipeline **refuses** the answer.
+
+Reproduce: `python scripts/demo_failure_case.py` → `data/eval/failure_case_nvda.json`
+
+## Deploy live demo (Streamlit Cloud)
+
+1. Go to [share.streamlit.io](https://share.streamlit.io) → **New app** → repo `sanialolidk/financial-rag-eval`
+2. Main file: `app.py` · Python 3.11
+3. **Secrets** (Settings → Secrets):
+   ```toml
+   OPENAI_API_KEY = "sk-..."
+   ```
+4. Deploy — indexes are bundled in `data/chroma/` + `data/bm25/` (no ingest step on cloud)
 
 ## Project layout
 
@@ -153,7 +172,7 @@ financial-rag-eval/
 1. **Rate limits** — SEC EDGAR (10 req/s) and CoinGecko-style throttling don't apply here, but OpenAI judge calls add cost; use `--limit` for eval.
 2. **Stale filings** — ingest pulls latest 10-K/10-Q per ticker; re-run ingest quarterly.
 3. **Cross-ticker compare questions** — retrieval may not surface both tickers; chunk recall alert fires.
-4. **Numeric precision** — model may paraphrase numbers; faithfulness judge catches unsupported values.
+4. **Numeric precision** — model may cite prior-year figures; numeric grounding + faithfulness judge refuse (see NVDA failure case).
 5. **Impossible queries** — system should refuse; if not, hallucination + low faithfulness alerts trigger.
 
 ## Stack

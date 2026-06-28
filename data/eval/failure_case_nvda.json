@@ -1,0 +1,14 @@
+{
+  "case": "nvda_datacenter_prior_year_hallucination",
+  "question": "What Data Center revenue did NVIDIA report in the most recent fiscal period?",
+  "hallucinated_answer": "NVIDIA reported Data Center revenue of $10.32 billion in fiscal 2023, representing strong year-over-year growth in AI infrastructure demand.",
+  "retrieved_top_chunk": "NVDA 10-K (0001045810-26-000021) \u2014 p.1",
+  "faithfulness": 1.0,
+  "hallucination_detected": true,
+  "hallucination_details": "Ungrounded numerics: ['$10.32 (10.32b)', 'fiscal year 2023']",
+  "alerts": [
+    "HALLUCINATION: Ungrounded numerics: ['$10.32 (10.32b)', 'fiscal year 2023']"
+  ],
+  "system_refused": true,
+  "explanation": "Answer cites fiscal 2023 / $10.32B but retrieved NVDA 10-Q chunk states 'Data Center revenue was $75.2 billion' (fiscal 2026). Numeric grounding detector flags ungrounded dollar amount and fiscal year; pipeline refuses."
+}

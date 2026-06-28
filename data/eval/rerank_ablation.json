@@ -1,0 +1,209 @@
+{
+  "num_queries": 22,
+  "avg_top1_relevance_before_rerank": 0.717,
+  "avg_top1_relevance_after_rerank": 0.828,
+  "improvement_absolute": 0.111,
+  "improvement_percent": 15.5,
+  "top1_rank_changed_count": 15,
+  "top1_rank_changed_pct": 68.2,
+  "per_query": [
+    {
+      "query_id": "aapl_revenue",
+      "before_top1_relevance": 0.886,
+      "after_top1_relevance": 0.8857730073903682,
+      "delta": -0.0,
+      "hybrid_top1_id": "AAPL_10-Q_0000320193-26-000013_p1_w20_361ea69e4525cdda",
+      "rerank_top1_id": "AAPL_10-Q_0000320193-26-000013_p1_w20_361ea69e4525cdda",
+      "rank_changed": false
+    },
+    {
+      "query_id": "aapl_risk",
+      "before_top1_relevance": 0.791,
+      "after_top1_relevance": 0.9275261504022212,
+      "delta": 0.137,
+      "hybrid_top1_id": "META_10-Q_0001628280-26-028526_p1_w140_2c681d8a5e2d4a0e",
+      "rerank_top1_id": "AAPL_10-K_0000320193-25-000079_p1_w31_7dcc5dc3fd920431",
+      "rank_changed": true
+    },
+    {
+      "query_id": "tsla_automotive",
+      "before_top1_relevance": 0.576,
+      "after_top1_relevance": 0.5758829333186946,
+      "delta": -0.0,
+      "hybrid_top1_id": "TSLA_10-Q_0001628280-26-026673_p1_w71_8a4bce2e52ffc1c5",
+      "rerank_top1_id": "TSLA_10-Q_0001628280-26-026673_p1_w71_8a4bce2e52ffc1c5",
+      "rank_changed": false
+    },
+    {
+      "query_id": "tsla_cash",
+      "before_top1_relevance": 0.955,
+      "after_top1_relevance": 0.9550140901479308,
+      "delta": 0.0,
+      "hybrid_top1_id": "TSLA_10-Q_0001628280-26-026673_p1_w29_4fa0e015c7822648",
+      "rerank_top1_id": "TSLA_10-Q_0001628280-26-026673_p1_w29_4fa0e015c7822648",
+      "rank_changed": false
+    },
+    {
+      "query_id": "jpm_nii",
+      "before_top1_relevance": 0.992,
+      "after_top1_relevance": 0.9915636641033015,
+      "delta": -0.0,
+      "hybrid_top1_id": "JPM_10-Q_0001628280-26-029344_p79_w3_414334a8afe53641",
+      "rerank_top1_id": "JPM_10-Q_0001628280-26-029344_p79_w3_414334a8afe53641",
+      "rank_changed": false
+    },
+    {
+      "query_id": "jpm_credit",
+      "before_top1_relevance": 0.983,
+      "after_top1_relevance": 0.9954242074584385,
+      "delta": 0.012,
+      "hybrid_top1_id": "JPM_10-K_0001628280-26-008131_p214_w102_ef9b62af4574c1f9",
+      "rerank_top1_id": "JPM_10-Q_0001628280-26-029344_p176_w36_a541346530595d20",
+      "rank_changed": true
+    },
+    {
+      "query_id": "msft_cloud",
+      "before_top1_relevance": 0.986,
+      "after_top1_relevance": 0.9974693244552972,
+      "delta": 0.011,
+      "hybrid_top1_id": "MSFT_10-Q_0001193125-26-191507_p1_w124_d130e30bf9fed040",
+      "rerank_top1_id": "MSFT_10-K_0000950170-25-100235_p1_w94_b67e1042ad20e2ba",
+      "rank_changed": true
+    },
+    {
+      "query_id": "msft_rnd",
+      "before_top1_relevance": 0.761,
+      "after_top1_relevance": 0.9794827074201711,
+      "delta": 0.218,
+      "hybrid_top1_id": "MSFT_10-Q_0001193125-26-191507_p1_w132_4279b8cef0a69562",
+      "rerank_top1_id": "MSFT_10-Q_0001193125-26-191507_p1_w135_3ab29927fede3f48",
+      "rank_changed": true
+    },
+    {
+      "query_id": "googl_ads",
+      "before_top1_relevance": 0.966,
+      "after_top1_relevance": 0.9973816067715071,
+      "delta": 0.031,
+      "hybrid_top1_id": "GOOGL_10-K_0001652044-26-000018_p1_w91_e514b9993357a8c9",
+      "rerank_top1_id": "GOOGL_10-K_0001652044-26-000018_p1_w126_e1fe0c3ca3b91a36",
+      "rank_changed": true
+    },
+    {
+      "query_id": "googl_ai",
+      "before_top1_relevance": 0.83,
+      "after_top1_relevance": 0.8322828177735432,
+      "delta": 0.002,
+      "hybrid_top1_id": "GOOGL_10-K_0001652044-26-000018_p1_w89_27b2e245d9e2c5f3",
+      "rerank_top1_id": "GOOGL_10-K_0001652044-26-000018_p1_w40_cc96dddc6e983ab1",
+      "rank_changed": true
+    },
+    {
+      "query_id": "amzn_aws",
+      "before_top1_relevance": 0.657,
+      "after_top1_relevance": 0.9264677835351621,
+      "delta": 0.269,
+      "hybrid_top1_id": "AMZN_10-K_0001018724-26-000004_p67_w68_91d0352334b34336",
+      "rerank_top1_id": "AMZN_10-K_0001018724-26-000004_p67_w20_631bd35ec368fc27",
+      "rank_changed": true
+    },
+    {
+      "query_id": "amzn_fulfillment",
+      "before_top1_relevance": 0.885,
+      "after_top1_relevance": 0.8853735991900297,
+      "delta": 0.0,
+      "hybrid_top1_id": "AMZN_10-K_0001018724-26-000004_p67_w22_ee0d38aea8ae9862",
+      "rerank_top1_id": "AMZN_10-K_0001018724-26-000004_p67_w22_ee0d38aea8ae9862",
+      "rank_changed": false
+    },
+    {
+      "query_id": "nvda_datacenter",
+      "before_top1_relevance": 0.955,
+      "after_top1_relevance": 0.9786503342872658,
+      "delta": 0.024,
+      "hybrid_top1_id": "NVDA_10-K_0001045810-26-000021_p1_w94_4799d22845c7deff",
+      "rerank_top1_id": "NVDA_10-K_0001045810-26-000021_p1_w166_edc863beda8999e2",
+      "rank_changed": true
+    },
+    {
+      "query_id": "nvda_gross_margin",
+      "before_top1_relevance": 0.034,
+      "after_top1_relevance": 0.43996214447650295,
+      "delta": 0.406,
+      "hybrid_top1_id": "AAPL_10-Q_0000320193-26-000013_p1_w38_e8d730362fb835be",
+      "rerank_top1_id": "NVDA_10-Q_0001045810-26-000052_p1_w20_f759f0522ade76c3",
+      "rank_changed": true
+    },
+    {
+      "query_id": "meta_reality_labs",
+      "before_top1_relevance": 0.205,
+      "after_top1_relevance": 0.9136096688376671,
+      "delta": 0.709,
+      "hybrid_top1_id": "META_10-Q_0001628280-26-028526_p1_w27_ff5cd7691a1b6f20",
+      "rerank_top1_id": "META_10-K_0001628280-26-003942_p1_w151_bedf67197f107348",
+      "rank_changed": true
+    },
+    {
+      "query_id": "meta_dau",
+      "before_top1_relevance": 0.884,
+      "after_top1_relevance": 0.9048743402726176,
+      "delta": 0.021,
+      "hybrid_top1_id": "META_10-Q_0001628280-26-028526_p1_w16_7d9d2746e33b5b25",
+      "rerank_top1_id": "META_10-K_0001628280-26-003942_p1_w144_8ab00fabd604ee17",
+      "rank_changed": true
+    },
+    {
+      "query_id": "aapl_gross_margin",
+      "before_top1_relevance": 0.997,
+      "after_top1_relevance": 0.9972119834783297,
+      "delta": 0.0,
+      "hybrid_top1_id": "AAPL_10-K_0000320193-25-000079_p1_w59_4721f0d4dbf69963",
+      "rerank_top1_id": "AAPL_10-K_0000320193-25-000079_p1_w59_4721f0d4dbf69963",
+      "rank_changed": false
+    },
+    {
+      "query_id": "tsla_deliveries",
+      "before_top1_relevance": 0.066,
+      "after_top1_relevance": 0.5981664501425605,
+      "delta": 0.532,
+      "hybrid_top1_id": "TSLA_10-Q_0001628280-26-026673_p1_w67_19f58d5d000bdffb",
+      "rerank_top1_id": "TSLA_10-K_0001628280-26-003952_p1_w64_f9dc05ec87fbd95b",
+      "rank_changed": true
+    },
+    {
+      "query_id": "jpm_cet1",
+      "before_top1_relevance": 0.994,
+      "after_top1_relevance": 0.9962926942891664,
+      "delta": 0.002,
+      "hybrid_top1_id": "JPM_10-Q_0001628280-26-029344_p98_w1_4f0806f2d1da591a",
+      "rerank_top1_id": "JPM_10-Q_0001628280-26-029344_p148_w26_e3e48c5ca5ad825e",
+      "rank_changed": true
+    },
+    {
+      "query_id": "msft_share_repurchase",
+      "before_top1_relevance": 0.537,
+      "after_top1_relevance": 0.5667074450351909,
+      "delta": 0.03,
+      "hybrid_top1_id": "JPM_10-K_0001628280-26-008131_p106_w4_b7faa2982a59f4bc",
+      "rerank_top1_id": "AAPL_10-Q_0000320193-26-000013_p1_w55_6c5572da956d2b24",
+      "rank_changed": true
+    },
+    {
+      "query_id": "cross_compare",
+      "before_top1_relevance": 0.834,
+      "after_top1_relevance": 0.8343541052946037,
+      "delta": 0.0,
+      "hybrid_top1_id": "NVDA_10-K_0001045810-26-000021_p1_w94_4799d22845c7deff",
+      "rerank_top1_id": "NVDA_10-K_0001045810-26-000021_p1_w94_4799d22845c7deff",
+      "rank_changed": false
+    },
+    {
+      "query_id": "impossible_query",
+      "before_top1_relevance": 0.0,
+      "after_top1_relevance": 0.0335873232175334,
+      "delta": 0.034,
+      "hybrid_top1_id": "AAPL_10-K_0000320193-25-000079_p1_w93_3f5f1fe30476b9bd",
+      "rerank_top1_id": "AAPL_10-Q_0000320193-26-000013_p1_w21_4470395c9349715e",
+      "rank_changed": true
+    }
+  ]
+}
