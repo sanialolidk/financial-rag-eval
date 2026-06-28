@@ -164,6 +164,4 @@ financial-rag-eval/
 
 Python 3.11+, FastAPI, Streamlit, ChromaDB, sentence-transformers, rank-bm25, OpenAI, SQLite.
 
-## License
-
-MIT — SEC data is public domain; respect [SEC fair access policy](https://www.sec.gov/os/webmaster-faq#developers).
+SEC filings are public domain; respect [SEC fair access policy](https://www.sec.gov/os/webmaster-faq#developers) when re-ingesting.
