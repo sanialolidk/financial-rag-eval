@@ -13,5 +13,6 @@ data/logs/*
 !data/logs/retrieval_benchmark.json
 data/eval/*
 !data/eval/*.json
+!data/eval/eval_summary.json
 *.db
 .DS_Store

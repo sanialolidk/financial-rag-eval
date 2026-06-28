@@ -1,0 +1,14 @@
+{
+  "num_queries": 22,
+  "avg_faithfulness": 0.75,
+  "avg_chunk_recall": 0.932,
+  "avg_response_relevance": 0.51,
+  "mean_retrieval_latency_ms": 741.7,
+  "mean_total_latency_ms": 1368.4,
+  "hallucination_count": 1,
+  "alert_count": 7,
+  "eval_mode": "extractive_baseline_cross_encoder_judges",
+  "generation_model": "extractive (top cross-encoder sentences)",
+  "judge_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "refusal_count": 5
+}
