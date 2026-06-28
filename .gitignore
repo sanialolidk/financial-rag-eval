@@ -1,0 +1,17 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+data/corpus/*
+!data/corpus/.gitkeep
+data/chroma/*
+!data/chroma/.gitkeep
+data/bm25/*
+!data/bm25/.gitkeep
+data/logs/*
+!data/logs/.gitkeep
+*.db
+.DS_Store

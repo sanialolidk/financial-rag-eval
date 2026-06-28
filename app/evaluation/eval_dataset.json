@@ -1,0 +1,136 @@
+[
+  {
+    "query_id": "aapl_revenue",
+    "question": "What was Apple's total net sales or revenue in the most recent fiscal period covered by the filing?",
+    "expected_answer_contains": ["net sales", "revenue", "Apple"],
+    "expected_tickers": ["AAPL"],
+    "notes": "Should cite 10-K or 10-Q net sales figure"
+  },
+  {
+    "query_id": "aapl_risk",
+    "question": "What supply chain or manufacturing risks does Apple disclose in its risk factors?",
+    "expected_answer_contains": ["supply", "risk"],
+    "expected_tickers": ["AAPL"]
+  },
+  {
+    "query_id": "tsla_automotive",
+    "question": "How does Tesla describe automotive revenue or automotive gross margin in its SEC filing?",
+    "expected_answer_contains": ["automotive", "Tesla"],
+    "expected_tickers": ["TSLA"]
+  },
+  {
+    "query_id": "tsla_cash",
+    "question": "What does Tesla report about cash, cash equivalents, or liquidity?",
+    "expected_answer_contains": ["cash"],
+    "expected_tickers": ["TSLA"]
+  },
+  {
+    "query_id": "jpm_nii",
+    "question": "What does JPMorgan report about net interest income or NII?",
+    "expected_answer_contains": ["interest", "JPMorgan"],
+    "expected_tickers": ["JPM"]
+  },
+  {
+    "query_id": "jpm_credit",
+    "question": "What credit loss provisions or allowance for credit losses does JPMorgan discuss?",
+    "expected_answer_contains": ["credit", "loss"],
+    "expected_tickers": ["JPM"]
+  },
+  {
+    "query_id": "msft_cloud",
+    "question": "How does Microsoft describe Intelligent Cloud or Azure revenue growth?",
+    "expected_answer_contains": ["cloud", "Microsoft"],
+    "expected_tickers": ["MSFT"]
+  },
+  {
+    "query_id": "msft_rnd",
+    "question": "What research and development expenses does Microsoft report?",
+    "expected_answer_contains": ["research", "development"],
+    "expected_tickers": ["MSFT"]
+  },
+  {
+    "query_id": "googl_ads",
+    "question": "How does Alphabet describe Google advertising or Search revenue?",
+    "expected_answer_contains": ["advertising", "Google"],
+    "expected_tickers": ["GOOGL"]
+  },
+  {
+    "query_id": "googl_ai",
+    "question": "What does Alphabet say about AI investments or AI-related capital expenditures?",
+    "expected_answer_contains": ["AI", "capital"],
+    "expected_tickers": ["GOOGL"]
+  },
+  {
+    "query_id": "amzn_aws",
+    "question": "What AWS revenue or operating income does Amazon report?",
+    "expected_answer_contains": ["AWS", "Amazon"],
+    "expected_tickers": ["AMZN"]
+  },
+  {
+    "query_id": "amzn_fulfillment",
+    "question": "What fulfillment or shipping costs does Amazon discuss?",
+    "expected_answer_contains": ["fulfillment", "shipping"],
+    "expected_tickers": ["AMZN"]
+  },
+  {
+    "query_id": "nvda_datacenter",
+    "question": "How does NVIDIA describe Data Center revenue?",
+    "expected_answer_contains": ["Data Center", "NVIDIA"],
+    "expected_tickers": ["NVDA"]
+  },
+  {
+    "query_id": "nvda_gross_margin",
+    "question": "What gross margin does NVIDIA report?",
+    "expected_answer_contains": ["gross margin", "NVIDIA"],
+    "expected_tickers": ["NVDA"]
+  },
+  {
+    "query_id": "meta_reality_labs",
+    "question": "What does Meta report about Reality Labs revenue or operating losses?",
+    "expected_answer_contains": ["Reality Labs", "Meta"],
+    "expected_tickers": ["META"]
+  },
+  {
+    "query_id": "meta_dau",
+    "question": "What daily active users or family of apps metrics does Meta disclose?",
+    "expected_answer_contains": ["daily active", "users"],
+    "expected_tickers": ["META"]
+  },
+  {
+    "query_id": "aapl_gross_margin",
+    "question": "What gross margin percentage does Apple report for its products or services?",
+    "expected_answer_contains": ["gross margin", "Apple"],
+    "expected_tickers": ["AAPL"]
+  },
+  {
+    "query_id": "tsla_deliveries",
+    "question": "What vehicle production or delivery figures does Tesla mention?",
+    "expected_answer_contains": ["deliver", "vehicle"],
+    "expected_tickers": ["TSLA"]
+  },
+  {
+    "query_id": "jpm_cet1",
+    "question": "What CET1 capital ratio or regulatory capital does JPMorgan report?",
+    "expected_answer_contains": ["CET1", "capital"],
+    "expected_tickers": ["JPM"]
+  },
+  {
+    "query_id": "msft_share_repurchase",
+    "question": "What share repurchase activity does Microsoft report?",
+    "expected_answer_contains": ["repurchase", "share"],
+    "expected_tickers": ["MSFT"]
+  },
+  {
+    "query_id": "cross_compare",
+    "question": "Compare how Tesla and NVIDIA describe data center or AI-related revenue drivers.",
+    "expected_answer_contains": ["Tesla", "NVIDIA"],
+    "expected_tickers": ["TSLA", "NVDA"]
+  },
+  {
+    "query_id": "impossible_query",
+    "question": "What was Apple's Q3 2030 holographic display revenue guidance?",
+    "expected_answer_contains": [],
+    "expected_tickers": ["AAPL"],
+    "notes": "Should refuse — not in filings"
+  }
+]
