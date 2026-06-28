@@ -197,11 +197,3 @@ def load_corpus_text_files(corpus_dir: Path | None = None) -> list[dict]:
             "full_text": text,
         })
     return docs
-
-
-def fetch_transcript_urls(ticker: str) -> list[str]:
-    """Placeholder for optional earnings transcript ingestion via local files."""
-    transcript_dir = CORPUS_DIR / "transcripts"
-    if not transcript_dir.exists():
-        return []
-    return [str(p) for p in transcript_dir.glob(f"{ticker}_*.txt")]

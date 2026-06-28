@@ -4,15 +4,12 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
-.mypy_cache/
 data/corpus/*
 !data/corpus/.gitkeep
-# chroma + bm25 indexes committed for Streamlit Cloud (no re-ingest on deploy)
+data/corpus/raw/
 data/logs/*
 !data/logs/.gitkeep
-!data/logs/retrieval_benchmark.json
 data/eval/*
 !data/eval/*.json
-!data/eval/eval_summary.json
 *.db
 .DS_Store
